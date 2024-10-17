@@ -7,8 +7,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.company.inventory.model.Category;
 import com.company.inventory.response.CategoryResponseRest;
 import com.company.inventory.services.ICategoryService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @RestController
 @RequestMapping("/api/v1")
@@ -36,5 +40,12 @@ public class CategoryRestController {
 		ResponseEntity<CategoryResponseRest> response = service.searchById(id);
 		return response;
 	}
+	
+	@PostMapping("/categories")
+	public ResponseEntity<CategoryResponseRest> save(@RequestBody Category category) {
+		ResponseEntity<CategoryResponseRest> response = service.save(category);
+		return response;
+	}
+	
 
 }
